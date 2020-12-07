@@ -1,6 +1,6 @@
 preprocessing 
 
-- [ ] image denoising
+- [x] image denoising
 - [ ] image augmentation
 - [ ] image resizing 
 - [ ] image normalization
