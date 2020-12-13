@@ -1,7 +1,7 @@
 preprocessing 
 
 - [x] image denoising
-- [ ] image augmentation
-- [ ] image resizing 
+- [x] image augmentation
+- [x] image resizing 
 - [ ] image normalization
-- [ ] data splitting
+- [x] data splitting
