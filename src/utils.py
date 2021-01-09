@@ -1,5 +1,10 @@
+import os
+from typing import Any
+
+
 from PIL import Image
-from PIL
+from typing import Tuple
+
 
 
 def read_iamge(img_dir: str) -> Any:
@@ -26,16 +31,11 @@ def save_image(img:Any, output_dir: str, img_name: str ):
     img.save(fp=os.path.join(output_dir,img_name))
 
 
-def count_parameters(model) -> int:
-    """this function takes torch model instance and re
 
-    Args:
-        model (torch model): torch model instance
 
-    Returns:
-        int: the total number of parameters in the input model
-    """    
 
-    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
+
+
 
 
