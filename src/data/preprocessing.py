@@ -83,16 +83,23 @@ def randrot_aug(img: Any, direction: str = 'positive' ) -> Any:
     return img
 
 
-class RoctDataset(Dataset):
+def randshear_aug(img: Any, direction: str = 'positive' ) -> Any:
+    """this function takes input image, perform random shearing and return it.
 
-    def __init__(self, data_path:str, labels, transform= None):
-        self.data_path = data_path
-        self.labels = labels
-        self.transform = transform
+    Args:
+        img (Any): [description]
+        direction (str, optional): the shearing direction. Defaults to 'positive'.
+
+    Returns:
+        the sheared image
+    """    
+    angle = np.random.randint(4,8)
+
+    if direction == 'negative':
+        angle *= -1
+
+    img = ft.affine(img,angle=0,translate=[0,0],scale=1,shear=angle,fillcolor= 255)
+    return img
 
 
-    def __len__(self):
-        return len(self.labels)
 
-    def __getitem__(self, idx):
-        pass

@@ -4,7 +4,6 @@ import numpy as np
 
 
 from torch import nn
-from torchvision.transforms import Compose, ToTensor, Resize
 from torch.utils.data import Dataset,DataLoader
 
 
@@ -146,8 +145,7 @@ class ResnetAutoencoder(nn.Module):
         
         )
         
-        #self.avg_pooling = nn.AdaptiveAvgPool2d(output_size=(1,1))
-        #self.fc = nn.Linear(512,1000)
+
         
     def forward(self, x):
         x = self.conv1(x)
@@ -162,47 +160,3 @@ class ResnetAutoencoder(nn.Module):
 
 
 
-def train(model, iterator, optimizer, criterion, device):
-    
-    epoch_loss = 0
-    
-    model.train()
-    
-    for images in iterator:
-        
-        images = images.to(device)
-        
-        optimizer.zero_grad()
-                
-        output = model(images)
-        
-        loss = criterion(output, images)
-        
-        loss.backward()
-        
-        optimizer.step()
-        
-        epoch_loss += loss.item()
-        
-    return epoch_loss / len(iterator)
-
-
-def evaluate(model, iterator, criterion, device):
-    
-    epoch_loss = 0
-    
-    model.eval()
-    
-    with torch.no_grad():
-        
-        for images in iterator:
-            
-            images = images.to(device)
-            
-            output = model(images)
-
-            loss = criterion(output, images)
-
-            epoch_loss += loss.item()
-        
-    return epoch_loss / len(iterator)
