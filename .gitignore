@@ -2,4 +2,4 @@ venv/
 /data/
 __pycache__/
 .vscode/
-/models/
+.ipynb_checkpoints/

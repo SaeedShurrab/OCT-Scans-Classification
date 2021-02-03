@@ -4,6 +4,7 @@ from typing import List, Any
 import os
 
 import skimage
+from PIL import Image
 from skimage.restoration import  denoise_nl_means
 from skimage.metrics import peak_signal_noise_ratio
 import skimage.io as io
@@ -24,10 +25,10 @@ def nlm_denoising(img:Any) -> Any:
     """    
     img= np.array(img)   
     img = skimage.img_as_float(img)
-    nlm_den = denoise_nl_means(img,patch_size=7,patch_distance=11,h=0.1)
+    img = denoise_nl_means(img,patch_size=7,patch_distance=11,h=0.1)
     img = skimage.img_as_ubyte(img)
     img = Image.fromarray(img)
-    return nlm_den
+    return img
 
 
 
@@ -74,7 +75,7 @@ def randrot_aug(img: Any, direction: str = 'positive' ) -> Any:
     Returns:
         the reotated image
     """    
-    angle = np.random.randint(4,8)
+    angle = np.random.randint(8,16)
 
     if direction == 'negative':
         angle *= -1
@@ -93,7 +94,7 @@ def randshear_aug(img: Any, direction: str = 'positive' ) -> Any:
     Returns:
         the sheared image
     """    
-    angle = np.random.randint(4,8)
+    angle = np.random.randint(5,30)
 
     if direction == 'negative':
         angle *= -1
